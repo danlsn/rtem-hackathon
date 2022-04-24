@@ -266,3 +266,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+/schema/
+/data/
+/config.ini
+/videos/
+/api/
+/api/
