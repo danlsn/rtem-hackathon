@@ -57,7 +57,7 @@ def safe_open_w(path):
 
 def all_buildings_to_json():
     all_buildings = json.dumps(client.get_all_buildings())
-    with safe_open_w("./data/json/all_buildings.json") as f:
+    with safe_open_w("../data/json/all_buildings.json") as f:
         f.write(all_buildings)
     return
 
@@ -84,7 +84,7 @@ def get_all_points_to_json():
         for b_equipment in building_equipment:
             b_points = b_equipment["points"]
             all_points.extend(b_points)
-    with safe_open_w("./data/json/all_points.json") as f:
+    with safe_open_w("../data/json/all_points.json") as f:
         f.write(json.dumps(all_points))
 
 
@@ -105,7 +105,7 @@ def get_all_equipment():
     for b_id in tqdm(building_ids):
         building_equipment = client.get_building_equipment(b_id)
         all_equipment.extend(building_equipment)
-        with safe_open_w("./data/json/all_equipment.json") as f:
+        with safe_open_w("../data/json/all_equipment.json") as f:
             f.write(json.dumps(all_equipment))
 
 
@@ -187,7 +187,7 @@ def points_data_from_streaming_timeseries(
 
 def main():
     all_points = []
-    with open('./api/points/all.json', 'r') as f:
+    with open('../api/points/all.json', 'r') as f:
         j_file = json.load(f)
         for point in j_file:
             all_points.append(point['id'])
