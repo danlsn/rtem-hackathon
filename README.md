@@ -1,7 +1,7 @@
 # rtem-hackathon
 
 ___
-![](media/CleanShot 2022-04-29 at 12.33.52@2x.png)
+![](media/clean-shot-2022-04-29-at-12-33-52-2-x.png)
 
 ## Background
 
@@ -18,7 +18,7 @@ real-life project and develop my skills in data analytics and programming.
 
 ## The Brief
 
-![](media/CleanShot 2022-04-29 at 12.41.28@2x.png)
+![](media/clean-shot-2022-04-29-at-12-41-28-2-x.png)
 
 In 2016, NYSERDA launched the Real Time Energy Management Incentive Program
 throughout NY State, empowering building owners to collect vital data about the
@@ -94,14 +94,14 @@ environment.
 
 ## The Data
 
-![NY RTEM Portal](media/CleanShot 2022-04-29 at 12.58.15@2x.png)
+![NY RTEM Portal](media/clean-shot-2022-04-29-at-12-58-15-2-x.png)
 
 The Hackathon provides access to the RTEM Portal which is presumably the same
 interface building owners and operators use in production environments. The RTEM
 Program is delivered through the Onboard Data Platform who work with engineers
 to provide access and storage of building data for analysis.
 
-![](media/CleanShot 2022-04-29 at 13.02.20@2x.png)
+![](media/clean-shot-2022-04-29-at-13-02-20-2-x.png)
 
 The Onboard platform provides an API, and a handy Python SDK with various
 utilities access and make sense of the data.
