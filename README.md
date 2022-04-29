@@ -166,3 +166,32 @@ strain on the network as a whole.
 The benefit of a Power Factor Correction Unit Program would be trivially 
 demonstrable by using the RTEM Database combined with historical price data. 
 Particularly extreme cases could achieve an ROI within a couple of years.
+
+However, this idea is reactive not proactive (ironically) and the viability 
+of PFC Units does not necessarily require a sophisticated RTEM system.
+
+## First Exploration of the Data
+
+With those early ideas out of the way, let's actually start looking through 
+the data we've got access to, to see if any insights start to appear. At 
+least having some top-down visibility of the data will provide a good 
+starting point.
+
+<mark> Related: research/01_exploring_api.ipynb </mark>
+
+### What Types of Buildings Are There?
+
+| Building Types          |  0  |
+|:------------------------|:---:|
+| ('Multifamily',)        | 69  |
+| ('Commercial Retail',)  | 49  |
+| ('Commercial Office',)  | 46  |
+| ('Healthcare',)         | 16  |
+| ('Food/Beverage',)      | 13  |
+| ('K-12 School',)        |  9  |
+| ('College/University',) |  7  |
+| ('Hospitality',)        |  7  |
+| ('Not For Profit',)     |  5  |
+| ('',)                   |  3  |
+| ('Chemicals',)          |  1  |
+| ('Manufacturing',)      |  1  |
