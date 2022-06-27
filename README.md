@@ -144,6 +144,14 @@ historical electricity grid data including energy by source (coal, gas, solar,
 nuclear etc.) It would be possible to estimate the amount of greenhouse gas
 emissions as well as calculate cost savings.
 
+#### Concept 2A: Cool-room as a Battery
+
+Using Concept 2, could we set cool-room thermostats to cycle at a lower 
+temperature while energy is clean and cheap, to reduce usage later on?
+
+Is this even safe/legal? A fail-safe measure could make sure the cool-room 
+never gets above a food-safe temperature.
+
 ### Concept 3: Power Factor Correction
 
 By far the most boring, but probably most practical idea I've had is to identify
@@ -169,6 +177,11 @@ Particularly extreme cases could achieve an ROI within a couple of years.
 
 However, this idea is reactive not proactive (ironically) and the viability 
 of PFC Units does not necessarily require a sophisticated RTEM system.
+
+### Concept 4: Equipment Efficiency Losses Over Time
+- Is equipment becoming less efficient over time?
+- Increasing lifetime of equipment?
+- Thermal losses?
 
 ## First Exploration of the Data
 
