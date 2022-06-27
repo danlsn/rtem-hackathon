@@ -142,8 +142,6 @@ class DownloadRate:
         self._update_time_elapsed()
 
 
-
-
 # bd_440 = BuildingData(client, 440)
 # bd_440.get_all_point_data()
 # bd_426 = BuildingData(client, 426)
@@ -176,8 +174,11 @@ interesting_buildings = [
     327,
 ]
 
-for building_id in sample_buildings:
-    BuildingData(client, building_id).get_all_point_data()
+if __name__ == "__main__":
+    for building_id in sample_buildings:
+        BuildingData(client, building_id).get_all_point_data()
+    for building_id in interesting_buildings:
+        BuildingData(client, building_id).get_all_point_data()
 
 # for building_id in interesting_buildings:
 #     # Initialise BuildingData Object
