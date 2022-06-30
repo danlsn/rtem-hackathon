@@ -5,7 +5,8 @@ from os.path import exists
 import asyncio
 import pandas as pd
 import inflection
-import functions
+
+from realnyce import functions
 from tqdm import tqdm
 from onboard.client import RtemClient
 from onboard.client.models import TimeseriesQuery, PointData, PointSelector
@@ -19,6 +20,8 @@ api_key = config["DEFAULT"]["API_KEY"]
 # Initialise Onboard Client
 client = RtemClient(api_key=api_key)
 
+DL_COUNT = 0
+DL_LIMIT = 120
 
 class BuildingData:
     def __init__(self, rtem_client, building_id):
@@ -89,17 +92,19 @@ class BuildingData:
         self.point_types = point_types
 
     def get_all_point_data(self):
+        global DL_COUNT
+        global DL_LIMIT
         for point in self.points:
             if exists(f"../api/timeseries/all/{point['id']}.csv"):
                 print(
                     f"{datetime.now()}\t[{point['id']}]: Exists already. Skipping..."
                 )
             else:
-                if self.dl_count <= self.dl_limit:
+                if DL_COUNT <= DL_LIMIT:
                     functions.get_all_point_data(point["id"])
-                    self.dl_count += 1
+                    DL_COUNT += 1
                     print(
-                        f"{datetime.now()}\t[{point['id']}] Current Count: {self.dl_count}."
+                        f"{datetime.now()}\t[{point['id']}] Current Count: {DL_COUNT}."
                     )
                 else:
                     try:
@@ -115,7 +120,7 @@ class BuildingData:
                                 f"{datetime.now()}\tSlept for {minutes_slept}. {sleep_duration - minutes_slept} to "
                                 f"go."
                             )
-                        self.dl_count = 0
+                        DL_COUNT = 0
 
                     except KeyboardInterrupt:
                         quit()
@@ -175,10 +180,14 @@ interesting_buildings = [
 ]
 
 if __name__ == "__main__":
-    for building_id in sample_buildings:
-        BuildingData(client, building_id).get_all_point_data()
+    # for building_id in sample_buildings:
+    #     BuildingData(client, building_id).get_all_point_data()
     for building_id in interesting_buildings:
         BuildingData(client, building_id).get_all_point_data()
+    # time.sleep(2220)
+    for building_id in [258, 99, 141, 134]:
+        BuildingData(client, building_id).get_all_point_data()
+
 
 # for building_id in interesting_buildings:
 #     # Initialise BuildingData Object

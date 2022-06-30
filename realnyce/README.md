@@ -1,4 +1,4 @@
-# RTEM-Emissions
+# realNYCE – Real-time NY(C) Emission
 A Python utility module to estimate greenhouse gas emission intensity for 
 buildings using RTEM energy usage monitors, enriching already existing data 
 to support energy visibility and decarbonisation.

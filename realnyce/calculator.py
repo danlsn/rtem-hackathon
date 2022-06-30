@@ -34,6 +34,6 @@ if __name__ == "__main__":
     df = main()
     print(df['gen_MWh'].sum())
     pt_df = pd.pivot_table(df, 'gen_MWh', 'fuel_category', aggfunc=numpy.sum)
-    pt_df['gen_%'] = (pt_df['gen_MWh'] / pt_df['gen_MWh'].sum()) * 100
+    pt_df['gen_pct'] = (pt_df['gen_MWh'] / pt_df['gen_MWh'].sum()) * 100
     pt_df.to_csv('../api/eia/2019_fuelmix_generation.csv')
     pass

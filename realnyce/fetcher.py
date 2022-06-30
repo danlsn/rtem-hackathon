@@ -9,6 +9,7 @@ import tempfile
 import zipfile
 import pandas as pd
 import requests
+from datetime import datetime
 
 BASE_PATH = "../api"
 # EIA Annual Generation & Emissions URL
@@ -22,6 +23,7 @@ ANNUAL_GENERATION_URL = (
 # NYISO Download URLs
 NY_FUELMIX_URL = "http://mis.nyiso.com/public/csv/rtfuelmix"  # 'http://mis.nyiso.com/public/csv/rtfuelmix/20220601rtfuelmix_csv.zip'
 NY_RT_LBMP_URL = "http://mis.nyiso.com/public/csv/rtlbmp"  # 'http://mis.nyiso.com/public/csv/rtlbmp/20220601rtlbmp_zone_csv.zip'
+NY_LBMP_URL = "http://mis.nyiso.com/public/csv/realtime"
 
 
 def download_file(url, dir):
@@ -58,8 +60,6 @@ class Data:
 
     def download(self):
         download_file(self.BASE_URL, self.DL_PATH)
-
-
 
 
 class ArchiveData(Data):
@@ -136,9 +136,9 @@ class GenerationData(Data):
         pass
 
 
-class LBMPData(ArchiveData):
+class RTLBMPData(ArchiveData):
     BASE_URL = NY_RT_LBMP_URL
-    DL_PATH = "../api/lbmp"
+    DL_PATH = "../api/rtlbmp"
     FILE_SUFFIX = "rtlbmp_zone.csv"
     ARCHIVE_SUFFIX = "rtlbmp_zone_csv.zip"
 
@@ -146,10 +146,44 @@ class LBMPData(ArchiveData):
         super().__init__(start_date, end_date)
 
 
-def main():
-    EmissionsData().download()
-    GenerationData().download()
+class LBMPData(ArchiveData):
+    BASE_URL = NY_LBMP_URL
+    DL_PATH = "../api/lbmp"
+    FILE_SUFFIX = "realtime_zone.csv"
+    ARCHIVE_SUFFIX = "realtime_zone_csv.zip"
 
+    def __init__(self, start_date, end_date):
+        super().__init__(start_date, end_date)
+
+
+def fetch_current_fuelmix():
+    now = datetime.now().strftime("%Y%m%d")
+    filename = f"{now}rtfuelmix.csv"
+    download_url = f"{NY_FUELMIX_URL}/{filename}"
+    with tempfile.TemporaryDirectory() as tmpdir:
+        download_file(download_url, tmpdir)
+        df = pd.read_csv(
+            f"{tmpdir}/{filename}",
+            names=["ts", "tz", "fuel_category", "gen_MW"],
+            index_col=None,
+            header=0,
+        )
+        ts_max = df["ts"].max()
+        df = df.loc[df["ts"] == ts_max]
+        return df
+
+
+def fetch_building_data():
+    pass
+
+
+def main():
+    # df = fetch_current_fuelmix()
+    # pass
+    # EmissionsData().download()
+    # GenerationData().download()
+    lbmp = LBMPData('1999-11-01', '2022-06-01')
+    lbmp.download()
 
 if __name__ == "__main__":
     main()

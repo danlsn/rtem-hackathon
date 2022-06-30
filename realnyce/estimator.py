@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 """
-estimator.py: Calculate GHG emissions intensity by energy source.
+estimator.py: Calculate GHG emissions intensity by energy source. Estimated using EIA data for total annual power
+generation for New York State against annual emissions for the same time period.
 """
 import pandas as pd
 
